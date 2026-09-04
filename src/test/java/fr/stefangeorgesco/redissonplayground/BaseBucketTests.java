@@ -12,12 +12,12 @@ abstract class BaseBucketTests<V> extends BaseTests {
 
     protected Mono<V> get() {
         return bucket.get()
-                .doOnNext(s -> log.info("Value: {}", s));
+                .doOnNext(s -> log.info("Read {} value: {}", bucket.getName(), s));
     }
 
     protected Mono<Long> ttl() {
         return bucket.remainTimeToLive()
-                .doOnNext(aLong -> log.info("Remaining TTL: {}", aLong));
+                .doOnNext(aLong -> log.info("Remaining TTL on bucket {}: {}", bucket.getName(), aLong));
     }
 
     protected static Duration duration(long millis) {
