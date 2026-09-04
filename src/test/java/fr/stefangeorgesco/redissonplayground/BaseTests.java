@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 abstract class BaseTests {
 
@@ -30,5 +32,13 @@ abstract class BaseTests {
         if (redissonClient != null) {
             redissonClient.shutdown();
         }
+    }
+
+    protected static Duration duration(long millis) {
+        return Duration.ofMillis(millis);
+    }
+
+    protected static Mono<Long> delay(long millis) {
+        return Mono.delay(duration(millis));
     }
 }

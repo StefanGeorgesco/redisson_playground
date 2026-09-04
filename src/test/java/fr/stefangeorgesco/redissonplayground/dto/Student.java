@@ -39,4 +39,14 @@ public class Student {
     public List<Integer> getMarks() {
         return marks;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", city='" + city + '\'' +
+                ", marks=" + marks +
+                '}';
+    }
 }
