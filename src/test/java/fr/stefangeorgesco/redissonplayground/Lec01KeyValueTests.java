@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.redisson.client.codec.StringCodec;
 import reactor.test.StepVerifier;
 
-@SuppressWarnings("LoggingSimilarMessage")
-class Lec01KeyValueTests extends BaseTests<String> {
+class Lec01KeyValueTests extends BaseBucketTests<String> {
 
     @BeforeEach
     void setUpEach() {
@@ -15,18 +14,18 @@ class Lec01KeyValueTests extends BaseTests<String> {
 
     @Test
     void keyValueAccessTest() {
-        set = bucket.set("sam");
+        set = bucket.set("Sam");
         StepVerifier.create(set.then(ttl()).then(get()))
-                .expectNext("sam")
+                .expectNext("Sam")
                 .verifyComplete();
     }
 
     @Test
     void keyValueExpiryTest() {
-        set = bucket.set("sam", duration(1000));
+        set = bucket.set("Sam", duration(1000));
 
         StepVerifier.create(set.then(ttl()).then(get()))
-                .expectNext("sam")
+                .expectNext("Sam")
                 .verifyComplete();
 
         StepVerifier.create(delay(1000).then(ttl()).then(get()))
@@ -36,10 +35,10 @@ class Lec01KeyValueTests extends BaseTests<String> {
 
     @Test
     void keyValueExtendExpiryTest() {
-        set = bucket.set("sam", duration(1000));
+        set = bucket.set("Sam", duration(1000));
 
         StepVerifier.create(set.then(ttl()).then(get()))
-                .expectNext("sam")
+                .expectNext("Sam")
                 .verifyComplete();
 
         StepVerifier.create(
@@ -47,7 +46,7 @@ class Lec01KeyValueTests extends BaseTests<String> {
                                 .then(bucket.expire(duration(1000)))
                                 .then(delay(800).then(ttl()).then(get()))
                 )
-                .expectNext("sam")
+                .expectNext("Sam")
                 .verifyComplete();
 
         StepVerifier.create(delay(200).then(ttl()).then(get()))

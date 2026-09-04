@@ -11,7 +11,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class Lec02KeyValueObjectTests extends BaseTests<Student> {
+class Lec02KeyValueObjectTests extends BaseBucketTests<Student> {
 
     @Test
     void keyValueObjectDefaultCodecTest() {
