@@ -17,7 +17,7 @@ abstract class BaseTests {
 
     private final RedissonConfig redissonConfig = new RedissonConfig();
     protected final Logger log = LoggerFactory.getLogger(getClass());
-    private RedissonClient redissonClient;
+    protected RedissonClient redissonClient;
     protected RedissonReactiveClient client;
     protected Mono<Void> set;
 
@@ -40,5 +40,14 @@ abstract class BaseTests {
 
     protected static Mono<Long> delay(long millis) {
         return Mono.delay(duration(millis));
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    protected void sleep(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
