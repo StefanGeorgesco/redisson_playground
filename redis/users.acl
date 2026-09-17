@@ -1,0 +1,5 @@
+user my-app on >my-app-password ~* &* +@all
+
+user reader on >reader-password ~* &* +@read
+
+user restricted-app on >restricted-password ~myapp:* &* +@read +@write

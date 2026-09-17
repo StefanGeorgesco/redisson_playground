@@ -15,6 +15,9 @@ public class RedissonConfig {
             Config config = new Config();
             config.useSingleServer()
                     .setAddress("redis://localhost:6379");
+            config
+                    .setUsername("my-app")
+                    .setPassword("my-app-password");
             redissonClient = Redisson.create(config);
         }
         return redissonClient;
